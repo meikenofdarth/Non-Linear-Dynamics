@@ -34,10 +34,15 @@ class PredatorPreyChemostat:
         return [dN_dt, dC_dt, dR_dt, dB_dt]
 
     def run_simulation(self, y0, t_span, t_eval, rtol=1e-6, atol=1e-9): # <<< MODIFICATION
+        # sol = solve_ivp(
+        #     self._model_equations, t_span, y0,
+        #     t_eval=t_eval, method='RK45',
+        #     rtol=rtol, atol=atol # <<< MODIFICATION
+        # )
         sol = solve_ivp(
             self._model_equations, t_span, y0,
-            t_eval=t_eval, method='RK45',
-            rtol=rtol, atol=atol # <<< MODIFICATION
+            t_eval=t_eval, method='LSODA', # <<< CHANGE SOLVER HERE TOO
+            rtol=rtol, atol=atol
         )
         
         # Check if the integration was successful. status=0 is success.
@@ -96,7 +101,9 @@ def plot_bifurcation_diagram(delta_range, Ni_val, y0, t_transient, t_measure):
         
         t_span_transient = (0, t_transient)
         # We don't need evaluated points for the transient run, solver can run faster
-        sol_transient = solve_ivp(system._model_equations, t_span_transient, y0, method='RK45')
+        # sol_transient = solve_ivp(system._model_equations, t_span_transient, y0, method='RK45')
+        sol_transient = solve_ivp(system._model_equations, t_span_transient, y0, method='LSODA') # <<< CHANGE SOLVER
+
 
         # <<< MODIFICATION 2: Check for failure after the transient run >>>
         if sol_transient.status != 0:
