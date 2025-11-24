@@ -91,7 +91,7 @@ bifurcation_results = generate_bifurcation_data('delta', delta_range, fixed_para
 fig, ax1 = plt.subplots(figsize=(14, 7))
 
 # --- Plot 1: Prey (Chlorella) on the left Y-axis (ax1) ---
-color = 'tab:gray' # Using gray for prey as in the paper
+color = 'tab:green' # Using gray for prey as in the paper
 ax1.set_xlabel('Dilution rate δ (per day)', fontsize=14)
 ax1.set_ylabel('Chlorella vulgaris (Prey)', color=color, fontsize=14)
 
