@@ -52,7 +52,7 @@ def generate_bifurcation_data(param_name, param_range, fixed_params, y0):
 
 # --- Setup and Run the Analysis ---
 # Define the range for our bifurcation parameter
-delta_range = np.linspace(0.1, 1.5, 5000) # 200 points for a high-resolution plot
+delta_range = np.linspace(0.1, 1.5, 10000) 
 
 # Define the other parameters, which will be held constant
 fixed_parameters = {'Ni': 80.0, 'lam': 0.4} # Using the paper's standard values
